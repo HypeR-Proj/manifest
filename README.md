@@ -3,7 +3,17 @@ SPDX-FileCopyrightText: 2026 roolrz
 SPDX-License-Identifier: Apache-2.0
 -->
 
-# manifest
+# HypeR source manifest
 
-A HypeR component. See [HypeR](https://github.com/HypeR-Proj/HypeR) for
-workspace setup and the installed SDK build boundary.
+Initialize an empty working directory with:
+
+```sh
+repo init -u https://github.com/HypeR-Proj/manifest -b main
+repo sync
+```
+
+The manifest is managed under `.repo/manifests`; source projects track `main`.
+There are no manually advanced component revisions. Product configurations are
+owned by `HypeR/products`; component Kconfig files belong to their repositories.
+The build records the exact source inputs used for each output. A topic verifier
+substitutes proposed changes only within its isolated checkout.

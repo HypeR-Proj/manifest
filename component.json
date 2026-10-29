@@ -14,8 +14,8 @@
   "tests": [
     [
       "python3",
-      "-B",
-      "tests/ci/check-workspace.py"
+      "{component}/tests/check.py"
     ]
-  ]
+  ],
+  "cargo_context": {}
 }

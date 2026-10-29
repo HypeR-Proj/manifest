@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-FileCopyrightText: 2026 roolrz -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<manifest>
+  <remote name="hyper" fetch="https://github.com/HypeR-Proj/" />
+  <default remote="hyper" revision="refs/heads/main" sync-j="8" />
+  <project name="HypeR" path="HypeR" />
+  <project name="abi" path="abi" />
+  <project name="block" path="block" />
+  <project name="bootstrap" path="bootstrap" />
+  <project name="bootstrap-handoff" path="bootstrap-handoff" />
+  <project name="bootstrap-retire" path="bootstrap-retire" />
+  <project name="build" path="build" />
+  <project name="ci" path="ci" />
+  <project name="clap-shared" path="clap-shared" />
+  <project name="component" path="component" />
+  <project name="component-config" path="component-config" />
+  <project name="component-manager" path="component-manager" />
+  <project name="componentctl" path="componentctl" />
+  <project name="console-raw" path="console-raw" />
+  <project name="coreutils" path="coreutils" />
+  <project name="dynamic-loader" path="dynamic-loader" />
+  <project name="editor" path="editor" />
+  <project name="fit-pack" path="fit-pack" />
+  <project name="free" path="free" />
+  <project name="fs-backend" path="fs-backend" />
+  <project name="fs-erofs" path="fs-erofs" />
+  <project name="fs-fat" path="fs-fat" />
+  <project name="fs-service" path="fs-service" />
+  <project name="grep" path="grep" />
+  <project name="handle" path="handle" />
+  <project name="io-runtime" path="io-runtime" />
+  <project name="journal-client" path="journal-client" />
+  <project name="journalctl" path="journalctl" />
+  <project name="journald" path="journald" />
+  <project name="kernel" path="kernel" />
+  <project name="ldd" path="ldd" />
+  <project name="less" path="less" />
+  <project name="lib" path="lib" />
+  <project name="memstat" path="memstat" />
+  <project name="mount" path="mount" />
+  <project name="perf" path="perf" />
+  <project name="ps" path="ps" />
+  <project name="rust-fatfs" path="rust-fatfs" />
+  <project name="rust-lib" path="rust-lib" />
+  <project name="rust-std" path="rust-std" />
+  <project name="service" path="service" />
+  <project name="service-ipc" path="service-ipc" />
+  <project name="session-manager" path="session-manager" />
+  <project name="shell" path="shell" />
+  <project name="system-startup" path="system-startup" />
+  <project name="terminal" path="terminal" />
+  <project name="terminal-service" path="terminal-service" />
+  <project name="text-ui" path="text-ui" />
+  <project name="tool-args" path="tool-args" />
+  <project name="toolchain" path="toolchain" />
+  <project name="top" path="top" />
+  <project name="umount" path="umount" />
+  <project name="vm-image" path="vm-image" />
+  <project name="vm-manager" path="vm-manager" />
+  <project name="vm-policy" path="vm-policy" />
+  <project name="vm-runtime" path="vm-runtime" />
+  <project name="vm-support" path="vm-support" />
+  <project name="vmm" path="vmm" />
+  <project name="io-vm" path="io-vm" groups="external" />
+  <project name="pi5-images" path="pi5-images" groups="external" />
+</manifest>
