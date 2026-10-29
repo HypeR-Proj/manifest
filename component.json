@@ -1,4 +1,6 @@
 {
+  "SPDX-FileCopyrightText": "2026 roolrz",
+  "SPDX-License-Identifier": "Apache-2.0",
   "version": 1,
   "name": "manifest",
   "kind": "infrastructure",
@@ -6,16 +8,11 @@
     "repository": "https://github.com/roolrz/HypeR",
     "commit": "8d42d047058a2b58a291803700e86487fb723f7a"
   },
-  "sources": {},
-  "SPDX-FileCopyrightText": "2026 roolrz",
-  "SPDX-License-Identifier": "Apache-2.0",
-  "mounts": {},
   "packages": [],
   "tests": [
     [
       "python3",
       "{component}/tests/check.py"
     ]
-  ],
-  "cargo_context": {}
+  ]
 }
