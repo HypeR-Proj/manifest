@@ -26,7 +26,7 @@ The source-directory split does not change installed library names or paths.
 its own implementations and Cargo lockfile. Bootstrap may depend on this
 substrate and third-party Cargo libraries, but never on
 `lib/`, even through an optional, build, target-specific or vendored dependency.
-`tests/ci/check-workspace.py` checks these edges and the substrate's own
+`.workspace/tests/check-workspace.py` checks these edges and the substrate's own
 transitive path dependencies. `make app-fetch`, and therefore Native build and
 check targets, run the check before dependency resolution.
 

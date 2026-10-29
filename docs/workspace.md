@@ -46,3 +46,10 @@ I/O VM qualification and package publication belong to `io-vm`. System tests use
 its latest qualified package and do not compile the appliance. Pi5 distribution
 is a separate manual pipeline and does not gate system verification. Each
 repository independently publishes its documentation after a merge to `main`.
+
+## Module validation
+
+`python3 project.py test manifest` checks layout and the assembled Cargo dependency
+boundaries using `tests/check-workspace.py`. It does not compile or boot the system.
+Changes to a module's tests belong in its own `component.json` and PR workflow;
+only end-to-end runtime scenarios belong in the manual system workflow.
