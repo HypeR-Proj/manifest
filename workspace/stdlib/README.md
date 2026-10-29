@@ -12,6 +12,8 @@ installed SDK. It must not depend on either environment's service policy.
 | Source | Responsibility |
 | --- | --- |
 | [`hyper/`](https://github.com/HypeR-Proj/libc/blob/main/README.md) | Native C ABI wrappers, startup, heap/thread support and the Rust std C adapter |
+| [`musl/`](https://github.com/HypeR-Proj/lib-musl/blob/main/README.md) | MIT musl fork: supported standard C subset over the shared Native runtime |
+| [`cxx/`](https://github.com/HypeR-Proj/lib-cxx/blob/main/README.md) | LLVM libc++ fork: C++20 containers, algorithms, ownership, threads and clocks |
 | [`rust/`](https://github.com/HypeR-Proj/lib-rust/blob/main/README.md) | Raw and safe Native bindings, Rust entry, and the kernel filesystem-service wire protocol |
 | `rust-std/` | Formal-system dylib delivery of the SDK's Rust std port; bootstrap still links std statically |
 

@@ -73,6 +73,8 @@
   <project name="abi" path="sdk/abi" />
   <project name="toolchain" path="sdk/toolchain" />
   <project name="libc" path="stdlib/hyper" />
+  <project name="lib-musl" path="stdlib/musl" />
+  <project name="lib-cxx" path="stdlib/cxx" />
   <project name="lib-rust" path="stdlib/rust" />
   <project name="lib-std" path="stdlib/rust-std">
     <linkfile src="pal" dest="sdk/toolchain/rust-std" />

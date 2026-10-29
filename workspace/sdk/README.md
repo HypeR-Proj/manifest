@@ -7,9 +7,8 @@ SPDX-License-Identifier: Apache-2.0
 
 The HypeR Native SDK is the supported build boundary between this source tree
 and Native userspace applications. Kernel, ABI, runtime, toolchain, and application
-changes are reviewed and tested in one commit; SDK releases are derived from
-that coherent commit rather than assembled from independently moving
-repositories.
+changes are reviewed and tested as a coordinated candidate. The manifest owns
+the checkout layout; manual system CI records the exact commits it verified.
 
 ## Source ownership
 
@@ -20,6 +19,8 @@ implementations under `lib/`, and the static loader under `bootstrap/stage1/`:
 | --- | --- |
 | `sdk/abi/` | Machine-visible values, layouts, syscall metadata, and generated interfaces |
 | `stdlib/hyper/` | Freestanding C runtime, startup code, and architecture syscall veneers |
+| `stdlib/musl/` | Supported standard C functions from the MIT musl fork |
+| `stdlib/cxx/` | Supported C++20 library functions from the LLVM libc++ fork |
 | `bootstrap/stage1/userspace-loader/` | Static bootstrap executable loader |
 | `lib/dynamic-loader/elf/` | Formal loader ELF mapping and startup-stack implementation |
 | `lib/dynamic-loader/` | Formal executable loader, runtime linker and `dlopen` implementation |
