@@ -32,4 +32,5 @@ for project in root.findall('project'):
 assert {'HypeR', 'manifest', 'kernel', 'abi', 'toolchain', 'libc', 'lib-rust', 'lib-std',
         'build', 'ci', 'bootstrap', 'io-vm', 'pi5-images'} <= names
 assert next(p for p in root.findall('project') if p.get('name') == 'build').get('path') == '.'
+assert 'docs' not in links, 'documentation stays in its owning repository'
 print(f'validated {len(names)} rolling projects and {len(links)} workspace links')

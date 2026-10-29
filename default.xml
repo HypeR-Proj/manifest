@@ -8,7 +8,6 @@
     <linkfile src="build-tests/build" dest="tests/build" />
   </project>
   <project name="HypeR" path=".project">
-    <linkfile src="docs" dest="docs" />
     <linkfile src="HypeR Logo.png" dest="HypeR Logo.png" />
     <linkfile src="HypeR Logo.png.license" dest="HypeR Logo.png.license" />
   </project>
