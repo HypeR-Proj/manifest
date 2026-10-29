@@ -94,5 +94,5 @@ an isolated `APP_OUTPUT` to stage the whole application/library set; extra probe
 binaries are selected with `APP_EXTRA_BINS`. Board images take the I/O runtime
 from this staged set, just like the other services.
 
-See [Native component builds](../mk/README.md) for the shared Make templates,
+See [Native component builds](https://hyper-proj.github.io/build/mk/README.html) for the shared Make templates,
 feature variants, library collection and SDK component cache.

@@ -7,7 +7,7 @@ SPDX-License-Identifier: Apache-2.0
 
 Build and deployment options are declared in this directory's [Kconfig](Kconfig).
 Use the repository's `make menuconfig` and `.config` to select programs; see
-[product configuration](https://github.com/HypeR-Proj/HypeR/blob/main/docs/usage/deployment/configuration.md) for dependencies and defconfig workflows.
+[product configuration](../../docs/configuration.md) for dependencies and defconfig workflows.
 
 This directory contains foreground Native tools. Background programs live in
 [`svc/`](../svc/README.md), with independent service policy and logging.
@@ -15,7 +15,7 @@ The RAM-resident boot and recovery programs live in
 [`bootstrap/stage1`](https://github.com/HypeR-Proj/bootstrap/blob/main/README.md), an independent static-link
 workspace with its own lockfile and executable-owned implementations. The workspace here owns
 formal applications and reusable libraries in the top-level `lib/`.
-Native acceptance executables live under [`tests/app`](https://github.com/HypeR-Proj/ci/blob/main/tests/app/README.md);
+Native acceptance executables live under [`tests/app`](https://github.com/HypeR-Proj/ci/blob/main/app/README.md);
 they share this workspace's dependency lock but are built or packaged only by
 their selected test targets or development profile.
 Target builds consume the assembled
@@ -59,12 +59,12 @@ field and escape rejection); its bounded collections now use Vec storage.
 The kernel starts the archive's `/init` through the bootstrap loader. Stage-1
 prepares an independent system root and transfers supervision to the formal
 component manager. The detailed ownership rules live in
-[boot architecture](https://github.com/HypeR-Proj/HypeR/blob/main/docs/architecture/boot-layout.md) and the
-[handoff contract](https://github.com/HypeR-Proj/HypeR/blob/main/docs/design/boot/bootstrap-handoff.md).
+[boot architecture](https://hyper-proj.github.io/bootstrap/docs/boot-layout.html) and the
+[handoff contract](https://hyper-proj.github.io/lib-bootstrap-handoff/docs/handoff.html).
 
-Formal commands use [terminal streams and scoped authority](https://github.com/HypeR-Proj/HypeR/blob/main/docs/usage/applications/execution.md).
-Background providers follow the [component contract](https://github.com/HypeR-Proj/HypeR/blob/main/docs/design/services/components.md);
-VM lifecycle and console operations follow the [vmm manual](https://github.com/HypeR-Proj/HypeR/blob/main/docs/usage/applications/vmm.md).
+Formal commands use [terminal streams and scoped authority](https://hyper-proj.github.io/lib-dynamic-loader/docs/execution.html).
+Background providers follow the [component contract](https://hyper-proj.github.io/component-manager/docs/components.html);
+VM lifecycle and console operations follow the [vmm manual](https://hyper-proj.github.io/vmm/docs/usage.html).
 These manuals own runtime behavior; this README describes how the application
 workspace is built and maintained.
 
@@ -92,7 +92,7 @@ dynamic system executables use the explicitly delegated
 Clap-based tools select `libhyper_clap_shared.so` for Native builds; the same
 upstream parser is used directly for host tests. Command-specific argument
 structures stay in each tool. Component declarations and shared build templates
-are described in [Native component builds](../mk/README.md).
+are described in [Native component builds](https://hyper-proj.github.io/build/mk/README.html).
 
 `ARCH=riscv64` selects separate SDK and app output directories and runs the same
 service graph, including the userspace VM fleet. The optional
@@ -195,13 +195,13 @@ configuration and workers, separately from the live root namespace capability.
 
 The resident Linux I/O VM runs physical device drivers. `io-runtime` is the
 Native service that manages that VM; `vm-runtime` manages an individual business
-guest. [vm-smoke](https://github.com/HypeR-Proj/ci/blob/main/tests/app/vm-smoke/README.md) is a separate privileged acceptance fixture,
+guest. [vm-smoke](https://github.com/HypeR-Proj/ci/blob/main/app/vm-smoke/README.md) is a separate privileged acceptance fixture,
 not an interactive command or production service.
 
 ## Command manuals
 
 User-facing syntax and operational guidance live in the
-[application manuals](https://github.com/HypeR-Proj/HypeR/blob/main/docs/usage/applications/README.md). This README covers the source
+[application manuals](https://hyper-proj.github.io/HypeR/docs/usage/applications/README.html). This README covers the source
 workspace, build process and development interfaces.
 
 
@@ -233,7 +233,7 @@ retaining Native APIs for bootstrap and delegation.
 
 ## Planned work
 
-The shared [roadmap](https://github.com/HypeR-Proj/HypeR/blob/main/docs/project/roadmap.md) owns project commitments. Existing
+The shared [roadmap](https://hyper-proj.github.io/HypeR/docs/project/roadmap.html) owns project commitments. Existing
 Native application functionality remains supported while I/O backend and
 hardware qualification work continues. Multi-UART transport discovery and
 wiring are not yet implemented; the current deployment has one physical console.
