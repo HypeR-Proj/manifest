@@ -72,18 +72,18 @@
   <project name="pi5-images" path="pi5-images" groups="external" />
   <project name="abi" path="sdk/abi" />
   <project name="toolchain" path="sdk/toolchain" />
-  <project name="libc" path="stdlib/hyper" />
+  <project name="lib-system" path="stdlib/system" />
   <project name="lib-musl" path="stdlib/musl" />
   <project name="lib-cxx" path="stdlib/cxx" />
   <project name="lib-rust" path="stdlib/rust" />
   <project name="lib-std" path="stdlib/rust-std">
     <linkfile src="pal" dest="sdk/toolchain/rust-std" />
     <linkfile src="tools/prepare-rust-std.py" dest="sdk/toolchain/scripts/prepare-rust-std.py" />
-    <linkfile src="shim/include/hyper/std.h" dest="stdlib/hyper/include/hyper/std.h" />
-    <linkfile src="shim/src/crt-std.c" dest="stdlib/hyper/src/crt-std.c" />
-    <linkfile src="shim/src/std-fs.c" dest="stdlib/hyper/src/std-fs.c" />
-    <linkfile src="shim/src/std-process.c" dest="stdlib/hyper/src/std-process.c" />
-    <linkfile src="shim/src/std.c" dest="stdlib/hyper/src/std.c" />
+    <linkfile src="shim/include/hyper/std.h" dest="stdlib/system/include/hyper/std.h" />
+    <linkfile src="shim/src/crt-std.c" dest="stdlib/system/src/crt-std.c" />
+    <linkfile src="shim/src/std-fs.c" dest="stdlib/system/src/std-fs.c" />
+    <linkfile src="shim/src/std-process.c" dest="stdlib/system/src/std-process.c" />
+    <linkfile src="shim/src/std.c" dest="stdlib/system/src/std.c" />
   </project>
   <project name="bootstrap-retire" path="svc/bootstrap-retire" />
   <project name="component-manager" path="svc/component-manager" />
