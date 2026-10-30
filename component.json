@@ -13,15 +13,20 @@
     [
       "python3",
       "{component}/tests/check.py"
-    ],
-    [
-      "python3",
-      "{component}/tests/test-workspace.py"
-    ],
-    [
-      "python3",
-      "{component}/tests/check-workspace.py"
     ]
   ],
-  "test_requires_rust": false
+  "test_requires_rust": false,
+  "workspace": {
+    "files": {
+      "products": "boards"
+    }
+  },
+  "integration": {
+    "repositories": [
+      "HypeR"
+    ]
+  },
+  "documentation": {
+    "catalog": "default.xml"
+  }
 }

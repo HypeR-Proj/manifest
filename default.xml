@@ -5,34 +5,7 @@
   <remote name="hyper" fetch="https://github.com/HypeR-Proj/" />
   <default remote="hyper" revision="refs/heads/main" sync-j="8" />
   <project name="build" path=".">
-    <linkfile src="build-tests/build" dest="tests/build" />
-  </project>
-  <project name="HypeR" path=".project">
-    <linkfile src="HypeR Logo.png" dest="HypeR Logo.png" />
-    <linkfile src="HypeR Logo.png.license" dest="HypeR Logo.png.license" />
-  </project>
-  <project name="manifest" path=".workspace">
-    <linkfile src="workspace/.clang-format" dest=".clang-format" />
-    <linkfile src="workspace/.vscode/rust-analyzer.toml" dest=".vscode/rust-analyzer.toml" />
-    <linkfile src="workspace/.vscode/settings.json" dest=".vscode/settings.json" />
-    <linkfile src="workspace/Kconfig" dest="Kconfig" />
-    <linkfile src="workspace/app/.cargo/config.toml" dest="app/.cargo/config.toml" />
-    <linkfile src="workspace/app/Cargo.lock" dest="app/Cargo.lock" />
-    <linkfile src="workspace/app/Cargo.toml" dest="app/Cargo.toml" />
-    <linkfile src="workspace/app/Kconfig" dest="app/Kconfig" />
-    <linkfile src="workspace/app/README.md" dest="app/README.md" />
-    <linkfile src="workspace/boards/qemu-minimal.json" dest="boards/qemu-minimal.json" />
-    <linkfile src="workspace/boards/qemu.json" dest="boards/qemu.json" />
-    <linkfile src="workspace/boards/rpi5-native.json" dest="boards/rpi5-native.json" />
-    <linkfile src="workspace/boards/rpi5.json" dest="boards/rpi5.json" />
-    <linkfile src="workspace/configs/default_defconfig" dest="configs/default_defconfig" />
-    <linkfile src="workspace/lib/README.md" dest="lib/README.md" />
-    <linkfile src="workspace/rust-toolchain.toml" dest="rust-toolchain.toml" />
-    <linkfile src="workspace/sdk/README.md" dest="sdk/README.md" />
-    <linkfile src="workspace/stdlib/README.md" dest="stdlib/README.md" />
-    <linkfile src="workspace/svc/Kconfig" dest="svc/Kconfig" />
-    <linkfile src="workspace/svc/README.md" dest="svc/README.md" />
-  </project>
+    </project>
   <project name="componentctl" path="app/componentctl" />
   <project name="coreutils" path="app/coreutils" />
   <project name="editor" path="app/editor" />
@@ -77,14 +50,7 @@
   <project name="lib-cxx" path="stdlib/cxx" />
   <project name="lib-rust" path="stdlib/rust" />
   <project name="lib-rust-std" path="stdlib/rust-std">
-    <linkfile src="pal" dest="sdk/toolchain/rust-std" />
-    <linkfile src="tools/prepare-rust-std.py" dest="sdk/toolchain/scripts/prepare-rust-std.py" />
-    <linkfile src="shim/include/hyper/std.h" dest="stdlib/system/include/hyper/std.h" />
-    <linkfile src="shim/src/crt-std.c" dest="stdlib/system/src/crt-std.c" />
-    <linkfile src="shim/src/std-fs.c" dest="stdlib/system/src/std-fs.c" />
-    <linkfile src="shim/src/std-process.c" dest="stdlib/system/src/std-process.c" />
-    <linkfile src="shim/src/std.c" dest="stdlib/system/src/std.c" />
-  </project>
+    </project>
   <project name="bootstrap-retire" path="svc/bootstrap-retire" />
   <project name="component-manager" path="svc/component-manager" />
   <project name="console-raw" path="svc/console-raw" />
@@ -98,7 +64,9 @@
   <project name="terminal-service" path="svc/terminal-service" />
   <project name="vm-manager" path="svc/vm-manager" />
   <project name="vm-runtime" path="svc/vm-runtime" />
-  <project name="ci" path="tests" />
+  <project name="ci" path="ci" />
+  <project name="test-framework" path="test-framework" />
+  <project name="system-tests" path="tests" />
   <project name="lib-rust-fatfs" path="third_party/rust-fatfs" />
   <project name="fit-pack" path="tools/fit-pack" />
 </manifest>
