@@ -17,7 +17,9 @@ for project in root.findall('project'):
     assert re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_.-]*', name)
     assert name not in names and path not in paths
     assert not PurePosixPath(path).is_absolute() and '..' not in PurePosixPath(path).parts
-    assert project.get('revision', 'refs/heads/main') == 'refs/heads/main'
+    working = {'build', 'ci', 'system-tests', 'lib-fs-f2fs', 'fs-f2fs'}
+    expected = 'refs/heads/feat/fuchsia-f2fs' if name in working else 'refs/heads/main'
+    assert project.get('revision', 'refs/heads/main') == expected
     names.add(name)
     paths.add(path)
     for link in project:
@@ -32,6 +34,7 @@ for project in root.findall('project'):
 assert {'test-framework', 'system-tests', 'kernel', 'abi', 'toolchain', 'lib-system', 'lib-rust', 'lib-rust-std',
         'build', 'ci', 'bootstrap', 'io-vm', 'pi5-images'} <= names
 assert next(p for p in root.findall('project') if p.get('name') == 'build').get('path') == '.'
+assert working <= names
 assert not links, 'make prepare owns the execution view, not repo linkfile'
 assert not {'HypeR', 'manifest'} & names, 'repo already owns the manifest; top-level docs are not build inputs'
 print(f'validated {len(names)} rolling projects and {len(links)} workspace links')

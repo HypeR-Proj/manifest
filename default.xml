@@ -4,7 +4,7 @@
 <manifest>
   <remote name="hyper" fetch="https://github.com/HypeR-Proj/" />
   <default remote="hyper" revision="refs/heads/main" sync-j="8" />
-  <project name="build" path=".">
+  <project name="build" revision="refs/heads/feat/fuchsia-f2fs" path=".">
     </project>
   <project name="componentctl" path="app/componentctl" />
   <project name="coreutils" path="app/coreutils" />
@@ -32,6 +32,7 @@
   <project name="lib-component" path="lib/component" />
   <project name="lib-component-config" path="lib/component-config" />
   <project name="lib-dynamic-loader" path="lib/dynamic-loader" />
+  <project name="lib-fs-f2fs" revision="refs/heads/feat/fuchsia-f2fs" path="lib/fs-f2fs" />
   <project name="lib-fs-service" path="lib/fs-service" />
   <project name="lib-journal-client" path="lib/journal" />
   <project name="lib-service" path="lib/service" />
@@ -56,6 +57,7 @@
   <project name="console-raw" path="svc/console-raw" />
   <project name="fs-backend" path="svc/fs-backend" />
   <project name="fs-erofs" path="svc/fs-erofs" />
+  <project name="fs-f2fs" revision="refs/heads/feat/fuchsia-f2fs" path="svc/fs-f2fs" />
   <project name="fs-fat" path="svc/fs-fat" />
   <project name="io-runtime" path="svc/io-runtime" />
   <project name="journald" path="svc/journal" />
@@ -64,9 +66,9 @@
   <project name="terminal-service" path="svc/terminal-service" />
   <project name="vm-manager" path="svc/vm-manager" />
   <project name="vm-runtime" path="svc/vm-runtime" />
-  <project name="ci" path="ci" />
+  <project name="ci" revision="refs/heads/feat/fuchsia-f2fs" path="ci" />
   <project name="test-framework" path="test-framework" />
-  <project name="system-tests" path="tests" />
+  <project name="system-tests" revision="refs/heads/feat/fuchsia-f2fs" path="tests" />
   <project name="lib-rust-fatfs" path="third_party/rust-fatfs" />
   <project name="fit-pack" path="tools/fit-pack" />
 </manifest>
