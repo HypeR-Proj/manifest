@@ -18,7 +18,7 @@ implementations under `lib/`, and the static loader under `bootstrap/stage1/`:
 | Path | Responsibility |
 | --- | --- |
 | `sdk/abi/` | Machine-visible values, layouts, syscall metadata, and generated interfaces |
-| `stdlib/hyper/` | Freestanding C runtime, startup code, and architecture syscall veneers |
+| `stdlib/system/` | Freestanding C runtime, startup code, and architecture syscall veneers |
 | `stdlib/musl/` | Supported standard C functions from the MIT musl fork |
 | `stdlib/cxx/` | Supported C++20 library functions from the LLVM libc++ fork |
 | `bootstrap/stage1/userspace-loader/` | Static bootstrap executable loader |
@@ -29,7 +29,7 @@ implementations under `lib/`, and the static loader under `bootstrap/stage1/`:
 
 The kernel consumes `sdk/abi/` as a dependency-free `no_std` path dependency.
 Native applications consume only the assembled SDK. They must not include
-headers from `sdk/abi/` or `stdlib/hyper/` directly, link source-tree archives, or
+headers from `sdk/abi/` or `stdlib/system/` directly, link source-tree archives, or
 depend on private kernel modules.
 
 ## Build and installed layout
@@ -55,8 +55,8 @@ include/hyper/syscall.h
 include/string.h
 lib/crt1.o
 lib/crt.o
-lib/libhyper.a
-lib/libhyper.so
+lib/libsystem.a
+lib/libsystem.so
 lib64/ld-hyper-aarch64.so
 lib64/userspace-loader-hyper-aarch64
 lib/hyper/aarch64/hyper-native.ld
@@ -106,13 +106,13 @@ driver uses hidden visibility by default.
 Dynamic linking is the default. The generated executable names
 `/lib64/ld-hyper-aarch64.so` or
 `/lib64/ld-hyper-riscv64.so` in `PT_INTERP`
-and records `libhyper.so` as its
+and records `libsystem.so` as its
 runtime dependency. The interpreter performs eager `RELA`/`RELR` relocation,
 enforces W^X and RELRO, and opens exact dependency names through the process's
 delegated library Directory rather than a global path namespace. C consumers
 may use `<hyper/dlfcn.h>` for capability-relative `hyper_dlopen_at`, `dlsym`,
 and logical close. `HYPER_LINK_MODE=static` selects the matching
-`libhyper.a` runtime and produces a freestanding static PIE with no interpreter
+`libsystem.a` runtime and produces a freestanding static PIE with no interpreter
 or runtime dependency. The dynamic and static libraries are built from the
 same runtime sources and are both supported SDK application link modes.
 
@@ -166,7 +166,7 @@ data-plane workers, session manager, shell, and commands with the installed
 shell creates external Processes, executes a constructor-bearing `dlopen`
 fixture, and routes output through the complete handle-backed Console path
 under QEMU. The same test launches a statically linked Rust command to verify
-that the installed `libhyper.a` path remains executable, not merely linkable.
+that the installed `libsystem.a` path remains executable, not merely linkable.
 
 This enforced producer-consumer path is also the release boundary: a source
 change which works only through an undeclared source-tree include cannot pass

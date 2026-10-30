@@ -29,7 +29,7 @@ for project in root.findall('project'):
             assert not p.is_absolute() and not {'.git', '.repo', '..'} & set(p.parts)
         if name == 'manifest':
             assert (Path(__file__).resolve().parents[1] / link.get('src')).is_file()
-assert {'HypeR', 'manifest', 'kernel', 'abi', 'toolchain', 'libc', 'lib-rust', 'lib-std',
+assert {'HypeR', 'manifest', 'kernel', 'abi', 'toolchain', 'lib-system', 'lib-rust', 'lib-std',
         'build', 'ci', 'bootstrap', 'io-vm', 'pi5-images'} <= names
 assert next(p for p in root.findall('project') if p.get('name') == 'build').get('path') == '.'
 assert 'docs' not in links, 'documentation stays in its owning repository'

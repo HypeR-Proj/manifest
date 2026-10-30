@@ -81,7 +81,7 @@ make test-native ARCH=riscv64   # std, processes, threads, and shell acceptance
 The generated SDK is placed under `target/sdk/aarch64`, and dynamic PIE
 application images are written to `target/app/aarch64` by default. Applications
 that have no Rust DSO dependencies may set `HYPER_LINK_MODE=static` to select
-the SDK's equivalent `libhyper.a` link path. The system tools and VM services
+the SDK's equivalent `libsystem.a` link path. The system tools and VM services
 that consume `lib/` use dynamic linking; the integration image still executes
 `echo-static`, a standalone C fixture, as the SDK static-link contract test.
 Rust static linking remains covered by `std-test-static`. Both static and

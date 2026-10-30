@@ -46,7 +46,7 @@ the bootstrap or formal loader explicitly through an executable capability.
 providers. Image composition follows ELF dependencies and installs needed libraries in
 `/lib64/<arch>-hyper-hyper/` in both system and development images, with
 `/lib -> lib64`. AArch64 therefore uses `/lib/aarch64-hyper-hyper/`;
-RISC-V uses `/lib/riscv64-hyper-hyper/`. `libhyper.so` shares that directory.
+RISC-V uses `/lib/riscv64-hyper-hyper/`. `libsystem.so` shares that directory.
 ELF files retain the interpreter identity `/lib64/ld-hyper-<arch>.so`; process
 launchers explicitly supply the formal loader from `/lib64/`. The independent system filesystem is the formal root.
 Applications have actual ELF `DT_NEEDED` entries;
