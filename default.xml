@@ -55,7 +55,7 @@
   <project name="kernel" path="kernel" />
   <project name="lib-block" path="lib/block" />
   <project name="lib-bootstrap-handoff" path="lib/bootstrap-handoff" />
-  <project name="lib-clap-shared" path="lib/clap" />
+  <project name="lib-clap" path="lib/clap" />
   <project name="lib-component" path="lib/component" />
   <project name="lib-component-config" path="lib/component-config" />
   <project name="lib-dynamic-loader" path="lib/dynamic-loader" />
@@ -76,7 +76,7 @@
   <project name="lib-musl" path="stdlib/musl" />
   <project name="lib-cxx" path="stdlib/cxx" />
   <project name="lib-rust" path="stdlib/rust" />
-  <project name="lib-std" path="stdlib/rust-std">
+  <project name="lib-rust-std" path="stdlib/rust-std">
     <linkfile src="pal" dest="sdk/toolchain/rust-std" />
     <linkfile src="tools/prepare-rust-std.py" dest="sdk/toolchain/scripts/prepare-rust-std.py" />
     <linkfile src="shim/include/hyper/std.h" dest="stdlib/system/include/hyper/std.h" />
