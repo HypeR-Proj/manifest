@@ -29,8 +29,9 @@ for project in root.findall('project'):
             assert not p.is_absolute() and not {'.git', '.repo', '..'} & set(p.parts)
         if name == 'manifest':
             assert (Path(__file__).resolve().parents[1] / link.get('src')).is_file()
-assert {'HypeR', 'manifest', 'kernel', 'abi', 'toolchain', 'lib-system', 'lib-rust', 'lib-rust-std',
+assert {'test-framework', 'system-tests', 'kernel', 'abi', 'toolchain', 'lib-system', 'lib-rust', 'lib-rust-std',
         'build', 'ci', 'bootstrap', 'io-vm', 'pi5-images'} <= names
 assert next(p for p in root.findall('project') if p.get('name') == 'build').get('path') == '.'
-assert 'docs' not in links, 'documentation stays in its owning repository'
+assert not links, 'make prepare owns the execution view, not repo linkfile'
+assert not {'HypeR', 'manifest'} & names, 'repo already owns the manifest; top-level docs are not build inputs'
 print(f'validated {len(names)} rolling projects and {len(links)} workspace links')

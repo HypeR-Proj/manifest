@@ -1,7 +1,5 @@
-<!--
-SPDX-FileCopyrightText: 2026 roolrz
-SPDX-License-Identifier: Apache-2.0
--->
+<!-- SPDX-FileCopyrightText: 2026 roolrz -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
 
 # HypeR workspace manifest
 
@@ -9,23 +7,30 @@ SPDX-License-Identifier: Apache-2.0
 mkdir workspace && cd workspace
 repo init -u https://github.com/HypeR-Proj/manifest -b main
 repo sync
-make native-initramfs ARCH=aarch64
+make prepare
+make rebuild ARCH=aarch64
 ```
 
-`default.xml` owns repository paths and shared configuration links. Source projects
-track `main`; no manual revision advances are required. Build tools occupy the
-workspace root, and implementation repositories occupy `kernel`, `sdk`, `stdlib`,
-`lib`, `app`, `svc`, `bootstrap` and `tests`. Library repository names start with
-`lib`; their checkout paths follow their role in the workspace.
+`default.xml` owns repository names, source paths and revisions. Normal projects
+track `main`; no manual revision-advance commits are needed. The build tools
+occupy the workspace root. The manifest itself has one checkout in
+`.repo/manifests`; there is no second `.workspace` project and no top-level HypeR
+checkout. Edit manifest policy and `products/` board descriptions here.
 
-The manifest is checked out at `.workspace` as well as repo's `.repo/manifests`.
-Edit `.workspace/default.xml` and `workspace/` configuration files in the manifest
-repository. `linkfile` exposes shared Cargo, Kconfig, board and editor configuration
-at their workspace paths. Component Kconfig files remain with their sources.
+`make prepare` reads repository-owned `component.json` descriptions and generates
+Cargo workspaces, configurations, editor settings and execution views under OUT.
+Source checkouts contain no manifest-generated links. Modules may provide an
+independent Kconfig, and each module can be built from its own checkout. See the
+[build contract](https://hyper-proj.github.io/build/docs/module-builds.html).
 
-The documentation repository is checked out at `.project`. `io-vm` and
-`pi5-images` retain their independent publication workflows. System CI consumes
-qualified I/O VM packages; it does not rebuild the appliance for each test.
+The [module documentation catalog](modules.md) is generated from this manifest at
+documentation publication time. Adding a project adds its documentation entry
+without editing HypeR's generic documentation. `integration.repositories` in
+`component.json` lists management-only repositories such as HypeR; CI checks them
+when needed without adding them to a user's source workspace.
 
-For related changes, use the same `topic:` label on each PR and manually dispatch
-system verification in the CI repository. The verifier records exact revisions.
+Related PRs share one `topic:` label and use manually dispatched system verification.
+Working feature manifests may select same-named branches instead of `main`.
+I/O VM packages and Pi5 image publication remain separate from system acceptance.
+
+See [product configuration](docs/configuration.md) for deployment and board policy.

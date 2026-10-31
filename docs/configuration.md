@@ -18,17 +18,16 @@ deployment policy in the Linux I/O VM.
 | `BOARD_CONFIG` | Physical devices, guest definitions, disk partitions and mount policy |
 | Component and service declarations | Build targets, required child programs, startup and capability grants |
 
-The root [Kconfig](https://github.com/HypeR-Proj/build/blob/main/Kconfig) sources the configuration definitions owned by
-[bootstrap/stage1](https://github.com/HypeR-Proj/bootstrap/blob/main/Kconfig), [app](https://github.com/HypeR-Proj/build/blob/main/app/Kconfig),
-[svc](https://github.com/HypeR-Proj/build/blob/main/svc/Kconfig) and [tests/app](https://github.com/HypeR-Proj/ci/blob/main/app/Kconfig). These files own
-program defaults, deployment dependencies, menu labels and help.
-`component.mk` binds those symbols to Cargo targets and installed paths; it does
-not repeat their normal-product defaults or executable dependencies.
+The product Kconfig is generated from each repository's `component.json`
+artifact declarations. Those declarations own program defaults, delivery paths
+and installed-program prerequisites. Module-local Kconfig files are resolved
+independently; identical symbol names in different repositories never collide.
 
-The saved `.config` is the product selection used by both builds and packaging.
-[`configs/default_defconfig`](../workspace/configs/default_defconfig) is a minimal preset;
-omitted values take their defaults from Kconfig. Without a local `.config`,
-ordinary builds use the same Kconfig defaults. Test programs default to disabled.
+The product selection is saved at `OUT/config/ARCH/.config` and controls both
+builds and packaging. The build repository's `mk/workspace/configs/default_defconfig`
+is a minimal preset; omitted values take generated defaults. Test programs
+default to disabled. Root `make menuconfig` also offers independently saved
+module configurations.
 
 Default and saved products use the same selection and admission code. Saving
 an unchanged default selection does not change the executable set or startup
@@ -355,7 +354,7 @@ replacement guest backend.
 
 Use **Kernel → Optional kernel functionality** in root `make menuconfig`, or
 run `make -C kernel menuconfig` directly. Kernel settings are saved independently
-to `kernel/.config` (or `CONFIG_FILE`); normal builds translate its
+to `OUT/config/ARCH/modules/kernel.config` (or an explicit `CONFIG_FILE`); normal builds translate its
 `CONFIG_FEATURE_*` booleans into Cargo features. All root kernel features except
 Cargo's `default` alias have individual switches, including test selectors under
 **Kernel test instrumentation**.
@@ -407,7 +406,7 @@ For a full-screen terminal menu, run:
 
 ```sh
 make -C kernel menuconfig ARCH=aarch64
-# Edit a separate configuration without touching kernel/.config:
+# Edit a separate configuration without touching the saved module configuration:
 make -C kernel menuconfig ARCH=riscv64 CONFIG_FILE=/tmp/hyper-riscv.config
 ```
 

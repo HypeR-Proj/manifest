@@ -5,15 +5,15 @@ SPDX-License-Identifier: Apache-2.0
 
 # Workspace development
 
-The manifest defines project paths and configuration links. `repo sync` follows
+The manifest defines project paths and revisions. `repo sync` follows
 component `main` branches. Revisions are recorded when testing or publishing;
 contributors do not maintain internal version pins.
 
-Build tools occupy the workspace root. `kernel`, `sdk`, `stdlib`, `lib`, `app`,
-`svc`, `bootstrap` and `tests` contain independent Git checkouts. Shared board,
-Cargo, Kconfig and editor settings belong to this manifest repository; `linkfile`
-places them at their workspace paths. Component Kconfig and test commands belong
-to each component. No generated source tree or Cargo rewriting is involved.
+Build tools occupy the workspace root. Module repositories stay independently
+editable. The manifest owns board/product descriptions; repositories own their
+Cargo declarations, optional Kconfig and test commands. `make prepare` generates
+an execution view and all configuration/build files under OUT. The manifest
+itself stays in `.repo/manifests`, without a duplicate source checkout.
 
 ```sh
 repo start improve-top top
@@ -26,9 +26,10 @@ git commit -s
 git push hyper HEAD
 ```
 
-Open the workspace root in VS Code and build the Native SDK with
-`make sdk ARCH=aarch64`. The shared `.vscode` configuration locates the workspace
-across nested Git repositories and resolves Native dependencies through the SDK.
+Run `make prepare` and build the Native SDK with `make sdk ARCH=aarch64`.
+Open `out/HypeR-aarch64.code-workspace` in VS Code. Generated editor settings
+resolve the prepared Cargo workspaces and the architecture's SDK in OUT;
+source edits still update their owning Git checkout.
 
 For related changes, open one PR in each repository with the same `topic:name`
 label. Module tests resolve that topic and run only the current repository's tests.
@@ -49,7 +50,8 @@ repository independently publishes its documentation after a merge to `main`.
 
 ## Module validation
 
-`python3 project.py test manifest` checks layout and the assembled Cargo dependency
-boundaries using `tests/check-workspace.py`. It does not compile or boot the system.
-Changes to a module's tests belong in its own `component.json` and PR workflow;
-only end-to-end runtime scenarios belong in the manual system workflow.
+`python3 project.py test manifest` checks the source layout and product policy.
+Build-module tests validate generated Cargo workspaces and dependency boundaries
+using `scripts/check-workspace.py`. Neither check needs a whole-system boot.
+Changes to a module's tests belong in its own `component.json`; runtime cases
+belong to `system-tests`, while reusable harness code belongs to `test-framework`.
