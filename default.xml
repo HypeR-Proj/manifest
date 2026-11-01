@@ -4,8 +4,10 @@
 <manifest>
   <remote name="hyper" fetch="https://github.com/HypeR-Proj/" />
   <default remote="hyper" revision="refs/heads/main" sync-j="8" />
-  <project name="build" path=".">
-    </project>
+  <project name="build" path="build">
+    <linkfile src="Makefile" dest="Makefile"/>
+    <linkfile src="project.py" dest="project.py"/>
+  </project>
   <project name="componentctl" path="app/componentctl" />
   <project name="coreutils" path="app/coreutils" />
   <project name="editor" path="app/editor" />
@@ -68,5 +70,5 @@
   <project name="test-framework" path="test-framework" />
   <project name="system-tests" path="tests" />
   <project name="lib-rust-fatfs" path="third_party/rust-fatfs" />
-  <project name="fit-pack" path="tools/fit-pack" />
+  <project name="fit-pack" path="build/tools/fit-pack" />
 </manifest>
