@@ -13,15 +13,17 @@ make rebuild ARCH=aarch64
 
 `default.xml` owns repository names, source paths and revisions. Normal projects
 track `main`; no manual revision-advance commits are needed. The build tools
-occupy `build/`; the workspace root has no Git repository. The independent
-FIT tool lives at `build/tools/fit-pack`. The manifest itself has one checkout in
+occupy `build/system/`; the workspace root has no Git repository. The independent
+FIT tool lives at `build/tools/fit-pack`; Pi5 image distribution lives at
+`build/pi5-images/`. The app and service catalogs use `build/app/` and
+`build/svc/`, beside `build/system/` without nesting Git repositories. The manifest itself has one checkout in
 `.repo/manifests`; there is no second `.workspace` project and no top-level HypeR
 checkout. Edit manifest policy and `products/` board descriptions here.
 
 `make prepare` reads repository-owned `component.json` descriptions and generates
-Cargo workspaces, configurations, editor settings and execution views under OUT.
-Only the workspace-root `Makefile` and `project.py` are manifest-generated
-entry links; all implementation and policy stay in their source repositories. Modules may provide an
+build contexts, configurations, editor settings and execution views under OUT.
+The workspace-root `Makefile`, `project.py`, `.vscode` and `.clang-format` are
+manifest-generated links; all implementation and policy stay in their source repositories. Modules may provide an
 independent Kconfig, and each module can be built from its own checkout. See the
 [build contract](https://hyper-proj.github.io/build/docs/module-builds.html).
 

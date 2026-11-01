@@ -4,10 +4,14 @@
 <manifest>
   <remote name="hyper" fetch="https://github.com/HypeR-Proj/" />
   <default remote="hyper" revision="refs/heads/main" sync-j="8" />
-  <project name="build" path="build">
+  <project name="build" path="build/system">
     <linkfile src="Makefile" dest="Makefile"/>
     <linkfile src="project.py" dest="project.py"/>
+    <linkfile src="mk/workspace/.vscode" dest=".vscode"/>
+    <linkfile src="mk/workspace/.clang-format" dest=".clang-format"/>
   </project>
+  <project name="app" path="build/app" />
+  <project name="svc" path="build/svc" />
   <project name="docs" path="docs" />
   <project name="componentctl" path="app/componentctl" />
   <project name="coreutils" path="app/coreutils" />
@@ -45,7 +49,7 @@
   <project name="lib-vm-image" path="lib/vm-image" />
   <project name="lib-vm-policy" path="lib/vm-policy" />
   <project name="lib-vm-support" path="lib/vm-support" />
-  <project name="pi5-images" path="pi5-images" groups="external" />
+  <project name="pi5-images" path="build/pi5-images" groups="external" />
   <project name="abi" path="sdk/abi" />
   <project name="toolchain" path="sdk/toolchain" />
   <project name="lib-system" path="stdlib/system" />

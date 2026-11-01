@@ -9,9 +9,9 @@ The manifest defines project paths and revisions. `repo sync` follows
 component `main` branches. Revisions are recorded when testing or publishing;
 contributors do not maintain internal version pins.
 
-Build tools occupy `build/`, with the independent FIT tool at
+Build tools occupy `build/system/`, with the independent FIT tool at
 `build/tools/fit-pack`. The workspace root has no Git repository and contains
-only two generated build entry links (`Makefile` and `project.py`). Module repositories stay independently
+build entry links (`Makefile` and `project.py`) and editor links (`.vscode` and `.clang-format`). Module repositories stay independently
 editable. The manifest owns board/product descriptions; repositories own their
 Cargo declarations, optional Kconfig and test commands. `make prepare` generates
 an execution view and all configuration/build files under OUT. The manifest
@@ -54,6 +54,6 @@ repository independently publishes its documentation after a merge to `main`.
 
 `python3 project.py test manifest` checks the source layout and product policy.
 Build-module tests validate generated Cargo workspaces and dependency boundaries
-using `build/scripts/check-workspace.py` through the prepared view. Neither check needs a whole-system boot.
+using `scripts/check-workspace.py` through the prepared view. Neither check needs a whole-system boot.
 Changes to a module's tests belong in its own `component.json`; runtime cases
 belong to `system-tests`, while reusable harness code belongs to `test-framework`.

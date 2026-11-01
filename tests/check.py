@@ -31,12 +31,18 @@ for project in root.findall('project'):
             assert (Path(__file__).resolve().parents[1] / link.get('src')).is_file()
 assert {'test-framework', 'system-tests', 'kernel', 'abi', 'toolchain', 'lib-system', 'lib-rust', 'lib-rust-std',
         'build', 'ci', 'bootstrap', 'io-vm', 'pi5-images'} <= names
-assert next(p for p in root.findall('project') if p.get('name') == 'build').get('path') == 'build'
+assert next(p for p in root.findall('project') if p.get('name') == 'build').get('path') == 'build/system'
 assert next(p for p in root.findall('project') if p.get('name') == 'fit-pack').get('path') == 'build/tools/fit-pack'
 assert '.' not in paths, 'the workspace root must not be a Git project'
-assert links == {'Makefile', 'project.py'}, 'only bootstrap entry links belong at the workspace root'
+assert links == {'Makefile', 'project.py', '.vscode', '.clang-format'}
 build = next(p for p in root.findall('project') if p.get('name') == 'build')
 assert {(p.tag, p.get('src'), p.get('dest')) for p in build} == {
-    ('linkfile', name, name) for name in ('Makefile', 'project.py')}
+    ('linkfile', 'Makefile', 'Makefile'), ('linkfile', 'project.py', 'project.py'),
+    ('linkfile', 'mk/workspace/.vscode', '.vscode'),
+    ('linkfile', 'mk/workspace/.clang-format', '.clang-format')}
 assert not {'HypeR', 'manifest'} & names, 'repo already owns the manifest; top-level docs are not build inputs'
 print(f'validated {len(names)} rolling projects and {len(links)} workspace links')
+
+assert {'build/app', 'build/svc', 'build/system', 'build/tools/fit-pack', 'build/pi5-images'} <= paths
+for owner in ('build/app', 'build/svc', 'build/system', 'build/tools/fit-pack', 'build/pi5-images'):
+    assert not any(owner != path and PurePosixPath(owner).is_relative_to(path) for path in paths), owner
