@@ -8,6 +8,7 @@
     <linkfile src="Makefile" dest="Makefile"/>
     <linkfile src="project.py" dest="project.py"/>
   </project>
+  <project name="docs" path="docs" />
   <project name="componentctl" path="app/componentctl" />
   <project name="coreutils" path="app/coreutils" />
   <project name="editor" path="app/editor" />
