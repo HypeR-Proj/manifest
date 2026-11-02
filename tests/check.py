@@ -11,15 +11,13 @@ import xml.etree.ElementTree as ET
 root = ET.parse(Path(__file__).resolve().parents[1] / 'default.xml').getroot()
 assert root.find('default').get('revision') == 'refs/heads/main'
 assert root.find('remote').get('fetch').rstrip('/') == 'https://github.com/HypeR-Proj'
-working = {'lib-fs-f2fs', 'ci', 'svc', 'system-tests', 'fs-f2fs', 'build'}
 names, paths, links = set(), set(), set()
 for project in root.findall('project'):
     name, path = project.get('name'), project.get('path')
     assert re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_.-]*', name)
     assert name not in names and path not in paths
     assert not PurePosixPath(path).is_absolute() and '..' not in PurePosixPath(path).parts
-    expected = 'refs/heads/feat/fuchsia-f2fs' if name in working else 'refs/heads/main'
-    assert project.get('revision', 'refs/heads/main') == expected
+    assert project.get('revision', 'refs/heads/main') == 'refs/heads/main'
     names.add(name)
     paths.add(path)
     for link in project:
@@ -48,5 +46,3 @@ print(f'validated {len(names)} rolling projects and {len(links)} workspace links
 assert {'build/app', 'build/svc', 'build/system', 'build/tools/fit-pack', 'build/pi5-images'} <= paths
 for owner in ('build/app', 'build/svc', 'build/system', 'build/tools/fit-pack', 'build/pi5-images'):
     assert not any(owner != path and PurePosixPath(owner).is_relative_to(path) for path in paths), owner
-
-assert working <= names
