@@ -39,7 +39,6 @@
   <project name="lib-component" path="lib/component" />
   <project name="lib-component-config" path="lib/component-config" />
   <project name="lib-dynamic-loader" path="lib/dynamic-loader" />
-  <project name="lib-fs-f2fs" path="lib/fs-f2fs" />
   <project name="lib-fs-service" path="lib/fs-service" />
   <project name="lib-journal-client" path="lib/journal" />
   <project name="lib-service" path="lib/service" />
