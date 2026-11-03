@@ -34,7 +34,10 @@ assert {'test-framework', 'system-tests', 'kernel', 'abi', 'toolchain', 'lib-sys
 assert next(p for p in root.findall('project') if p.get('name') == 'build').get('path') == 'build/system'
 assert next(p for p in root.findall('project') if p.get('name') == 'fit-pack').get('path') == 'build/tools/fit-pack'
 assert '.' not in paths, 'the workspace root must not be a Git project'
-assert links == {'Makefile', 'project.py', '.vscode', '.clang-format'}
+assert links == {'README.md', 'Makefile', 'project.py', '.vscode', '.clang-format'}
+docs = next(p for p in root.findall('project') if p.get('name') == 'docs')
+assert {(p.tag, p.get('src'), p.get('dest')) for p in docs} == {
+    ('linkfile', 'WORKSPACE.md', 'README.md')}
 build = next(p for p in root.findall('project') if p.get('name') == 'build')
 assert {(p.tag, p.get('src'), p.get('dest')) for p in build} == {
     ('linkfile', 'Makefile', 'Makefile'), ('linkfile', 'project.py', 'project.py'),

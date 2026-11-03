@@ -22,10 +22,14 @@ checkout. Edit manifest policy and `products/` board descriptions here.
 
 `make prepare` reads repository-owned `component.json` descriptions and generates
 build contexts, configurations, editor settings and execution views under OUT.
-The workspace-root `Makefile`, `project.py`, `.vscode` and `.clang-format` are
+The workspace-root `README.md`, `Makefile`, `project.py`, `.vscode` and `.clang-format` are
 manifest-generated links; all implementation and policy stay in their source repositories. Modules may provide an
 independent Kconfig, and each module can be built from its own checkout. See the
 [build contract](https://hyper-proj.github.io/build/docs/module-builds.html).
+
+The root README is a thin entry page owned by the docs repository. It links to
+HypeR's generic documentation and the generated module catalog, without adding
+a root Git repository or another HypeR checkout.
 
 The [module documentation catalog](https://hyper-proj.github.io/manifest/modules.html) is generated from this manifest at
 documentation publication time. Adding a project adds its documentation entry

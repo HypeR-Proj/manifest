@@ -12,7 +12,9 @@
   </project>
   <project name="app" path="build/app" />
   <project name="svc" path="build/svc" />
-  <project name="docs" path="docs" />
+  <project name="docs" path="docs">
+    <linkfile src="WORKSPACE.md" dest="README.md"/>
+  </project>
   <project name="componentctl" path="app/componentctl" />
   <project name="coreutils" path="app/coreutils" />
   <project name="editor" path="app/editor" />
