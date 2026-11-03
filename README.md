@@ -27,7 +27,7 @@ manifest-generated links; all implementation and policy stay in their source rep
 independent Kconfig, and each module can be built from its own checkout. See the
 [build contract](https://hyper-proj.github.io/build/docs/module-builds.html).
 
-The [module documentation catalog](modules.md) is generated from this manifest at
+The [module documentation catalog](https://hyper-proj.github.io/manifest/modules.html) is generated from this manifest at
 documentation publication time. Adding a project adds its documentation entry
 without editing HypeR's generic documentation. `integration.repositories` in
 `component.json` lists management-only repositories such as HypeR; CI checks them
