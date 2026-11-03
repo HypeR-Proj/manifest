@@ -516,6 +516,7 @@ different build. Default invocations keep the existing output locations.
 Normal board builds continue to update generated system contents while
 preserving persistent partition bytes. Selecting a smaller image does not grant
 permission to repartition or erase an existing data volume. To change storage
-geometry, use a separate output directory or the explicitly destructive rebuild
-target. See [board storage](https://hyper-proj.github.io/HypeR/docs/usage/board-storage.html) and
+geometry, use a separate output directory or the explicitly destructive
+`make board-reset-storage` target. Ordinary `make rebuild` preserves existing data.
+See [board storage](https://hyper-proj.github.io/HypeR/docs/usage/board-storage.html) and
 [component builds](https://github.com/HypeR-Proj/build/blob/main/mk/README.md) for output and packaging details.
