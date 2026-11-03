@@ -9,9 +9,15 @@
     "uuid": "4e3c0876-f362-4395-9fcd-4d17002d2725",
     "partitions": [
       {
+        "label": "hyper-boot",
+        "size-mib": 64,
+        "filesystem": "fat",
+        "content": "boot"
+      },
+      {
         "label": "hyper-data",
         "size-mib": 1024,
-        "filesystem": "fat",
+        "filesystem": "f2fs",
         "content": "data"
       },
       {
@@ -28,13 +34,6 @@
     ]
   },
   "files": {
-    "hyper.img": "hyper",
-    "bootstrap.cpio": "bootstrap",
-    "bcm2712-rpi-5-b.dtb": "host-dtb",
-    "bcm2712d0-rpi-5-b.dtb": "host-dtb-d0",
-    "overlays/bcm2712d0.dtbo": "host-overlay-d0",
-    "overlays/overlay_map.dtb": "host-overlay-map",
-    "boot-notices.txt": "boot-notices",
     "vm/alpine.itb": "alpine"
   },
   "virtual-machines": [
@@ -84,5 +83,14 @@
         "uplink": "eth0"
       }
     ]
+  },
+  "boot-files": {
+    "hyper.img": "hyper",
+    "bootstrap.cpio": "bootstrap",
+    "bcm2712-rpi-5-b.dtb": "host-dtb",
+    "bcm2712d0-rpi-5-b.dtb": "host-dtb-d0",
+    "overlays/bcm2712d0.dtbo": "host-overlay-d0",
+    "overlays/overlay_map.dtb": "host-overlay-map",
+    "boot-notices.txt": "boot-notices"
   }
 }

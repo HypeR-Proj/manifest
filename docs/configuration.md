@@ -520,3 +520,22 @@ geometry, use a separate output directory or the explicitly destructive
 `make board-reset-storage` target. Ordinary `make rebuild` preserves existing data.
 See [board storage](https://hyper-proj.github.io/HypeR/docs/usage/board-storage.html) and
 [component builds](https://github.com/HypeR-Proj/build/blob/main/mk/README.md) for output and packaging details.
+
+## Default data and firmware volumes
+
+The `qemu`, `rpi5` and `rpi5-native` board policies use F2FS for newly created
+`content: data` partitions. `qemu-minimal` has no persistent data partition.
+F2FS requires at least 128 MiB. Keep `CONFIG_SYSTEM_APP_FS_F2FS_SYSTEM=y` to mount
+these volumes in the formal system; bootstrap recovery has no F2FS worker.
+
+Pi policies declare a separate first FAT partition with `content: boot`.
+`boot-files` maps paths in that partition to artifact names; `files` still maps
+initial files in `/data`. Firmware storage is not exported as a Native data
+volume. The system partition remains EROFS, and guest disk containers remain
+opaque. Custom combined FAT/data Pi policies continue to work.
+
+Rebuilding preserves existing data, including older QEMU FAT volumes with the
+same GPT geometry. It does not migrate filesystems. Old Pi layouts differ from
+the new split layout and are rejected before update: back up their contents and
+create a new image in another output directory. `board-reset-storage` is an
+explicit destructive operation affecting every partition.
