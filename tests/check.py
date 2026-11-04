@@ -49,3 +49,16 @@ print(f'validated {len(names)} rolling projects and {len(links)} workspace links
 assert {'build/app', 'build/svc', 'build/system', 'build/tools/fit-pack', 'build/pi5-images'} <= paths
 for owner in ('build/app', 'build/svc', 'build/system', 'build/tools/fit-pack', 'build/pi5-images'):
     assert not any(owner != path and PurePosixPath(owner).is_relative_to(path) for path in paths), owner
+
+# Product defaults must keep writable data independent of firmware and system.
+import json
+for name in ('qemu', 'rpi5', 'rpi5-native'):
+    board = json.loads((Path(__file__).resolve().parents[1] / 'products' / f'{name}.json').read_text())
+    parts = board['disk']['partitions']
+    data = [p for p in parts if p.get('content') == 'data']
+    assert len(data) == 1 and data[0]['filesystem'] == 'f2fs'
+    assert data[0]['size-mib'] >= 128
+    if name.startswith('rpi5'):
+        assert parts[0]['content'] == 'boot' and parts[0]['filesystem'] == 'fat'
+        assert 'hyper.img' in board['boot-files'] and 'hyper.img' not in board['files']
+print('validated default F2FS data and separate Pi firmware')

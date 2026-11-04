@@ -9,9 +9,15 @@
     "uuid": "90bbd4bb-efff-4640-89dc-f0d58a6d3467",
     "partitions": [
       {
-        "label": "hyper-data",
+        "label": "hyper-boot",
         "size-mib": 64,
         "filesystem": "fat",
+        "content": "boot"
+      },
+      {
+        "label": "hyper-data",
+        "size-mib": 128,
+        "filesystem": "f2fs",
         "content": "data"
       },
       {
@@ -22,15 +28,7 @@
       }
     ]
   },
-  "files": {
-    "hyper.img": "hyper",
-    "bootstrap.cpio": "bootstrap",
-    "bcm2712-rpi-5-b.dtb": "host-dtb",
-    "bcm2712d0-rpi-5-b.dtb": "host-dtb-d0",
-    "overlays/bcm2712d0.dtbo": "host-overlay-d0",
-    "overlays/overlay_map.dtb": "host-overlay-map",
-    "boot-notices.txt": "boot-notices"
-  },
+  "files": {},
   "virtual-machines": [],
   "io-vm": {
     "runtime": "io-runtime",
@@ -49,5 +47,14 @@
       "profile": "bcm2712-sdhci",
       "path": "/soc@107c000000/mmc@fff000"
     }
+  },
+  "boot-files": {
+    "hyper.img": "hyper",
+    "bootstrap.cpio": "bootstrap",
+    "bcm2712-rpi-5-b.dtb": "host-dtb",
+    "bcm2712d0-rpi-5-b.dtb": "host-dtb-d0",
+    "overlays/bcm2712d0.dtbo": "host-overlay-d0",
+    "overlays/overlay_map.dtb": "host-overlay-map",
+    "boot-notices.txt": "boot-notices"
   }
 }

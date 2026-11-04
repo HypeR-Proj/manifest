@@ -11,7 +11,7 @@
       {
         "label": "hyper-data",
         "size-mib": 1024,
-        "filesystem": "fat",
+        "filesystem": "f2fs",
         "content": "data"
       },
       {
