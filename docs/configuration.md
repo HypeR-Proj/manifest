@@ -539,3 +539,11 @@ same GPT geometry. It does not migrate filesystems. Old Pi layouts differ from
 the new split layout and are rejected before update: back up their contents and
 create a new image in another output directory. `board-reset-storage` is an
 explicit destructive operation affecting every partition.
+
+A formal storage provider can additionally declare `"random": true` when it
+implements the initialized-random service handoff. The default I/O VM successor
+opts in. This creates explicit client grants for formal applications; it does
+not give those applications provider read authority. Omitted or false values
+leave a custom provider independent of this service. Only a storage provider may
+advertise it, and a runtime profile transfers the server only to its selected
+successor.

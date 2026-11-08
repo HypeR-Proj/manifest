@@ -68,6 +68,10 @@
         "role": "priority"
       }
     },
+    "entropy-device": {
+      "profile": "bcm2711-rng200",
+      "compatible": "brcm,bcm2711-rng200"
+    },
     "io-device": {
       "profile": "bcm2712-sdhci",
       "path": "/soc@107c000000/mmc@fff000"
