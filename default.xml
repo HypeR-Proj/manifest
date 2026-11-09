@@ -4,7 +4,8 @@
 <manifest>
   <remote name="hyper" fetch="https://github.com/HypeR-Proj/" />
   <default remote="hyper" revision="refs/heads/main" sync-j="8" />
-  <project name="build" path="build/system">
+  <!-- Temporary MM01 validation branch. Do not merge this manifest into main. -->
+  <project name="build" path="build/system" revision="refs/heads/work/mm01-shared-file-mappings">
     <linkfile src="Makefile" dest="Makefile"/>
     <linkfile src="project.py" dest="project.py"/>
     <linkfile src="mk/workspace/.vscode" dest=".vscode"/>
@@ -34,7 +35,7 @@
   <project name="vmm" path="app/vmm" />
   <project name="bootstrap" path="bootstrap/stage1" />
   <project name="io-vm" path="io-vm" groups="external" />
-  <project name="kernel" path="kernel" />
+  <project name="kernel" path="kernel" revision="refs/heads/work/mm01-shared-file-mappings" />
   <project name="lib-block" path="lib/block" />
   <project name="lib-bootstrap-handoff" path="lib/bootstrap-handoff" />
   <project name="lib-clap" path="lib/clap" />
@@ -52,12 +53,12 @@
   <project name="lib-vm-policy" path="lib/vm-policy" />
   <project name="lib-vm-support" path="lib/vm-support" />
   <project name="pi5-images" path="build/pi5-images" groups="external" />
-  <project name="abi" path="sdk/abi" />
+  <project name="abi" path="sdk/abi" revision="refs/heads/work/mm01-shared-file-mappings" />
   <project name="toolchain" path="sdk/toolchain" />
-  <project name="lib-system" path="stdlib/system" />
+  <project name="lib-system" path="stdlib/system" revision="refs/heads/work/mm01-shared-file-mappings" />
   <project name="lib-musl" path="stdlib/musl" />
   <project name="lib-cxx" path="stdlib/cxx" />
-  <project name="lib-rust" path="stdlib/rust" />
+  <project name="lib-rust" path="stdlib/rust" revision="refs/heads/work/mm01-shared-file-mappings" />
   <project name="lib-rust-std" path="stdlib/rust-std">
     </project>
   <project name="bootstrap-retire" path="svc/bootstrap-retire" />
@@ -76,7 +77,7 @@
   <project name="vm-runtime" path="svc/vm-runtime" />
   <project name="ci" path="ci" />
   <project name="test-framework" path="test-framework" />
-  <project name="system-tests" path="tests" />
+  <project name="system-tests" path="tests" revision="refs/heads/work/mm01-shared-file-mappings" />
   <project name="lib-rust-fatfs" path="third_party/rust-fatfs" />
   <project name="fit-pack" path="build/tools/fit-pack" />
 </manifest>
